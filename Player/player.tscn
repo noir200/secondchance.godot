@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cancmqjhuld6i" path="res://Player/Audio/SwordSwoosh.wav" id="8_od3ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
-size = Vector2(20, 11)
+size = Vector2(33.5, 14)
 
 [sub_resource type="Animation" id="Animation_5htga"]
 resource_name = "attack_down"
@@ -432,11 +432,11 @@ script = ExtResource("1_4ntmi")
 position = Vector2(210, 123)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(210, 132.5)
+position = Vector2(210.75, 129)
 shape = SubResource("RectangleShape2D_k53q1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(209.99998, 113)
+position = Vector2(210, 110)
 scale = Vector2(1, 1.018)
 texture = ExtResource("2_k53q1")
 hframes = 16
