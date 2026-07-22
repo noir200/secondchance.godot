@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://db3cyplnpln6v" path="res://Player/Scripts/state_idle.gd" id="4_gwnis"]
 [ext_resource type="Script" uid="uid://dxge4fr407cnm" path="res://Player/Scripts/state_walk.gd" id="5_k53q1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vonw3"]
-radius = 16.03122
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
+size = Vector2(27, 11)
 
 [sub_resource type="Animation" id="Animation_btcbx"]
 length = 0.001
@@ -138,15 +138,19 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 16
 script = ExtResource("1_4ntmi")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(210, 123)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(208, 128)
-shape = SubResource("CircleShape2D_vonw3")
+position = Vector2(209.5, 132.5)
+shape = SubResource("RectangleShape2D_k53q1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(207.99998, 112)
-scale = Vector2(1.1153846, 1.1349206)
+position = Vector2(209.99998, 113)
+scale = Vector2(1, 1.018)
 texture = ExtResource("2_4ntmi")
 hframes = 21
 
