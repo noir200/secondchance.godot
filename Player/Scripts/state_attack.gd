@@ -6,7 +6,7 @@ class_name State_Attack extends State
 @onready var audio : AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 @onready var animation_player : AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_anim : AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
-@onready var hurt_box : HurtBox = $"../../Interactions/HurtBox"
+@onready var hurt_box : HurtBox = %AttackHurtBox
 @onready var attack : State_Attack = $"."
 @onready var idle : State_Idle = $"../idle"
 @onready var walk : State = $"../walk"
