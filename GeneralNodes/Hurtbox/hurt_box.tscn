@@ -4,5 +4,6 @@
 
 [node name="HurtBox" type="Area2D"]
 collision_layer = 0
+collision_mask = 256
 monitorable = false
 script = ExtResource("1_npecx")
