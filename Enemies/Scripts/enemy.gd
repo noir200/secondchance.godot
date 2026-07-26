@@ -1,28 +1,29 @@
 class_name Enemy extends CharacterBody2D
-
 signal direction_changed( new_direction : Vector2 )
 signal enemy_damaged()
-
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
-
 @export var hp : int = 3
-
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 var player : Player
 var invulnerable : bool = false
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
+@onready var shadow_sprite : Node2D = get_node_or_null("ShadowSprite2D")
 
 func _ready():
 	state_machine.initialize( self )
 	player = PlayerManager.player
+	if shadow_sprite == null:
+		push_warning("Enemy: ShadowSprite node not found — check the node name/path in the Slime scene.")
 
-func _process(_delta):
-	z_index = int(global_position.y)
-	pass
+func _process(_delta: float) -> void:
+	update_z_index()
+
+func update_z_index() -> void:
+	var y_ref : float = shadow_sprite.global_position.y if shadow_sprite else global_position.y
+	z_index = int(clamp(y_ref, -4000.0, 4000.0))
 
 func _physics_process(_delta):
 	move_and_slide()

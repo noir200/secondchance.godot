@@ -1,5 +1,6 @@
 class_name State_Attack extends State
  
+
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5.0
  
@@ -17,9 +18,13 @@ func _ready() -> void:
 	animation_player.animation_finished.connect( EndAttack )
  
 func Enter() -> void:
+	print("Audio node path: ", audio.get_path())
+	print("Audio node volume: ", audio.volume_db)
+	print("Audio bus: ", audio.bus)
 	player.UpdateAnimation("attack")
 	attack_anim.play( "attack_" + player.AnimDirection() )
 	audio.stream = attack_sound
+	print("Attack sound stream: ", attack_sound)
 	audio.pitch_scale = randf_range( 0.9, 1.1 )
 	audio.play()
 	attacking = true

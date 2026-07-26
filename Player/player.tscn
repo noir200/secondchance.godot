@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://domgvtg1t3jbj"]
+[gd_scene load_steps=33 format=3 uid="uid://domgvtg1t3jbj"]
 
 [ext_resource type="Script" uid="uid://b46oxsp5eljps" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Script" uid="uid://c0fbsacejx3xe" path="res://Player/Scripts/PlayerCamera.gd" id="2_apopc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://mab4qcv6jrmf" path="res://Player/Scripts/state_attack.gd" id="6_fhl08"]
 [ext_resource type="Script" uid="uid://bf87g67r355aa" path="res://Player/Scripts/PlayerInteractionsHost.gd" id="10_apopc"]
 [ext_resource type="PackedScene" uid="uid://cfioahggm1txk" path="res://GeneralNodes/Hurtbox/hurt_box.tscn" id="10_x3vf3"]
+[ext_resource type="AudioStream" uid="uid://cancmqjhuld6i" path="res://Player/Audio/SwordSwoosh.wav" id="11_5htga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k53q1"]
 size = Vector2(33.5, 14)
@@ -485,6 +486,7 @@ collision_mask = 16
 script = ExtResource("1_4ntmi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = -100
 position = Vector2(210, 123)
 editor_draw_limits = true
 script = ExtResource("2_apopc")
@@ -547,10 +549,14 @@ script = ExtResource("5_k53q1")
 
 [node name="attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_fhl08")
+attack_sound = ExtResource("11_5htga")
 
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_5htga")
+volume_db = 12.0
+max_distance = 1.0
 max_polyphony = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
