@@ -11,6 +11,7 @@ var direction : Vector2 = Vector2.ZERO
 @onready var state_machine : PlayerStateMachine = $StateMachine
  
 func _ready() -> void:
+	PlayerManager.player = self
 	state_machine.Initialize( self )
  
 func _process( _delta : float ) -> void:
@@ -25,7 +26,7 @@ func SetDirection() -> bool:
 	if direction == Vector2.ZERO:
 		return false
  
-	var direction_id : int = int( round( ( direction + cardinal_direction * 0.1 ).angle() / TAU * DIR_4.size() ) )
+	var direction_id : int = int( round( ( direction ).angle() / TAU * DIR_4.size() ) )
 	var new_direction = DIR_4[ direction_id ]
  
 	if new_direction == cardinal_direction:

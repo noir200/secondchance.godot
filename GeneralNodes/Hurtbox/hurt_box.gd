@@ -10,7 +10,6 @@ func _process(delta: float) -> void:
 	pass
 
 func AreaEntered( a : Area2D ) -> void:
-	print("Something entered HurtBox: ", a.name)
 	if a is Hitbox:
 		a.TakeDamage( damage )
 	pass
