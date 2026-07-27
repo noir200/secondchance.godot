@@ -724,6 +724,7 @@ shape = SubResource("CircleShape2D_dkpye")
 debug_color = Color(0.40622735, 0.04660616, 0.07336918, 0.41960785)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_puctb")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(1, -7)

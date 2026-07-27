@@ -7,6 +7,7 @@ var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 var player : Player
 var invulnerable : bool = false
+var has_been_stunned : bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
@@ -61,6 +62,19 @@ func _take_damage( damage : int ) -> void:
 	if invulnerable:
 		return
 	hp -= damage
-	enemy_damaged.emit()
+	print("Enemy hp after hit: ", hp)
 	if hp <= 0:
-		queue_free()
+		die()
+		return
+	if has_been_stunned == false:
+		enemy_damaged.emit()
+
+func die() -> void:
+	hit_box.monitoring = false
+	hit_box.set_deferred("monitorable", false)
+	set_physics_process(false)
+	set_process(false)
+	state_machine.process_mode = Node.PROCESS_MODE_DISABLED
+	update_animation("destroy")
+	await animation_player.animation_finished
+	queue_free()
