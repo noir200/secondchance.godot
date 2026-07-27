@@ -6,6 +6,9 @@ var current_state : State
  
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
+	
+func new_cell():
+	pass
  
 func _process( delta : float ) -> void:
 	ChangeState( current_state.Process( delta ) )

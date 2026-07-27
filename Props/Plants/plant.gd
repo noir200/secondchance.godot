@@ -1,7 +1,7 @@
 class_name Plant extends Node2D
 
 func _ready():
-	$HitBox.Damaged.connect( TakeDamage )
+	$HitBox.damaged.connect( TakeDamage )
 	pass
 
 

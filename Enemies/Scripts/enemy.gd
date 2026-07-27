@@ -11,10 +11,12 @@ var invulnerable : bool = false
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 @onready var shadow_sprite : Node2D = get_node_or_null("ShadowSprite2D")
+@onready var hit_box: Hitbox = $HitBox
 
 func _ready():
 	state_machine.initialize( self )
 	player = PlayerManager.player
+	hit_box.damaged.connect( _take_damage )
 	if shadow_sprite == null:
 		push_warning("Enemy: ShadowSprite node not found — check the node name/path in the Slime scene.")
 
@@ -54,3 +56,11 @@ func anim_direction() -> String:
 		return "up"
 	else:
 		return "side"
+
+func _take_damage( damage : int ) -> void:
+	if invulnerable:
+		return
+	hp -= damage
+	enemy_damaged.emit()
+	if hp <= 0:
+		queue_free()
