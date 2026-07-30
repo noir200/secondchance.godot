@@ -8,6 +8,7 @@ var _direction : Vector2 = Vector2.DOWN
 var _animation_finished : bool = false
 
 func init() -> void:
+	print("Stun state init() called")
 	enemy.enemy_damaged.connect( _on_enemy_damaged )
 	enemy.animation_player.animation_finished.connect( _on_animation_finished )
 
@@ -35,5 +36,6 @@ func _on_enemy_damaged() -> void:
 		_direction = ( enemy.global_position - enemy.player.global_position ).normalized()
 	state_machine.change_state( self )
 
-func _on_animation_finished( _anim_name : String ) -> void:
-	_animation_finished = true
+func _on_animation_finished( finished_anim_name : String ) -> void:
+	if finished_anim_name.begins_with( anim_name + "_" ):
+		_animation_finished = true

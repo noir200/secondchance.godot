@@ -16,7 +16,9 @@ func Process( _delta : float ) -> State:
 		return walk
 	return 
  
-func Physics( _delta : float ) -> State:
+func physics( _delta : float ) -> State:
+	if player.is_dashing:
+		return null
 	return null
  
 func HandleInput( _event : InputEvent ) -> State:

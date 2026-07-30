@@ -48,7 +48,9 @@ func set_direction( _new_direction : Vector2 ) -> bool:
 	return true
 
 func update_animation( state : String ) -> void:
-	animation_player.play( state + "_" + anim_direction() )
+	var anim_to_play = state + "_" + anim_direction()
+	print("Trying to play animation: ", anim_to_play)
+	animation_player.play( anim_to_play )
 
 func anim_direction() -> String:
 	if cardinal_direction == Vector2.DOWN:
